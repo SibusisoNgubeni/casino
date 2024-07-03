@@ -35,6 +35,7 @@ startGame() {
 
 class Game {
   constructor(numPlayers) {
+      // Initialize the game with the given number of rounds
     this.numPlayers = numPlayers;
     this.deck = this.createDeck();
     this.currentRound = 1;
