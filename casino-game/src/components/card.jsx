@@ -48,7 +48,7 @@ const cardImagePaths = {
 export default function Card({ card }) {
   return (
     <div className='card'>
-      <img className='cards' src={cardImagePaths[card]} alt={card} />
+      <img className='card' src={cardImagePaths[card]} alt={card}  />
     </div>
   );
 }

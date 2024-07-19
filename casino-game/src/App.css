@@ -10,7 +10,7 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
- .cards{
+ .card{
   width: 100px;
   height: 120px;
  }
@@ -38,3 +38,12 @@ button {
   display: flex;
   gap: 10px;
 }
+ .start-game{
+  display: flex;
+  justify-content: center;
+  margin-left: 600px;
+ }
+
+ .selector{
+  margin-bottom: 60px;
+ }

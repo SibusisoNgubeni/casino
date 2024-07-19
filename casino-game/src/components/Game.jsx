@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Card from "./card"; // Make sure the path is correct
+import Card from "./card";
 import "../styles/game.css";
 
 class Player {
@@ -10,6 +10,10 @@ class Player {
 
   addCardToHand(card) {
     this.hand.push(card);
+  }
+
+  removeCardFromHand(card) {
+    this.hand = this.hand.filter(c => c !== card);
   }
 }
 
@@ -79,42 +83,59 @@ const Game = ({ currentPlayerIndex }) => {
     setGameStarted(true);
   };
 
+  const playCard = (playerIndex, card) => {
+    console.log(`Playing card: ${card} from player ${playerIndex}`);
+    const newPlayers = [...players];
+    const currentPlayer = newPlayers[playerIndex];
+    currentPlayer.removeCardFromHand(card);
+    setPlayers(newPlayers);
+    setOpenCards([...openCards, card]);
+  };
+
   return (
     <div>
+      <div className="start-game">
       {!gameStarted && (
         <form onSubmit={startGame}>
           <label>
             Number of Players:
-            <select value={numPlayers} onChange={(e) => setNumPlayers(Number(e.target.value))}>
+            <br/>
+            <select className="selector" value={numPlayers} onChange={(e) => setNumPlayers(Number(e.target.value))}>
               <option value={0}>Select</option>
               <option value={2}>2 Players</option>
               <option value={3}>3 Players</option>
               <option value={4}>4 Players</option>
             </select>
-          </label>
+          </label><br/>
           <button type="submit">Start Game</button>
         </form>
       )}
+     
+     </div>
 
-         {openCards.length > 0 && (
-                <div className="open-cards">
-                  <h3>Open Card</h3>
-                  {openCards.map((card, index) => (
-                    <Card key={index} card={card} />
-                  ))}
-                </div>
-              )}
-      {players.length > 0 && (
-        <div className="players">
-          <div className="player">
-            <h3>{players[currentPlayerIndex].name}</h3>
-            <div className="hand">
-             
-              {players[currentPlayerIndex].hand.map((card, cardIndex) => (
-                <Card key={cardIndex} card={card} />
+      {openCards.length > 0 && (
+            <div className="open-cards">
+              <h3>Open Cards</h3>
+              {openCards.map((card, index) => (
+                <Card key={index} card={card} />
               ))}
             </div>
+          )}
+      {gameStarted && (
+        <div>
+          <div className="players">
+            {players.length > 0 && (
+              <div className="player">
+                <h3>{players[currentPlayerIndex].name}</h3>
+                <div className="hand">
+                  {players[currentPlayerIndex].hand.map((card, cardIndex) => (
+                    <Card key={cardIndex} card={card} onClick={() => playCard(currentPlayerIndex, card)} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
+         
         </div>
       )}
     </div>
