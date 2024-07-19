@@ -1,14 +1,11 @@
-
-
 import React from "react";
-import Game from "./components/game";
+import Game from "./components/Game";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Card Game</h1>
-      <Game numPlayers={4} />
+      <Game currentPlayerIndex={0} />
     </div>
   );
 }

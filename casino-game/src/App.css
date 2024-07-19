@@ -10,3 +10,31 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
+ .cards{
+  width: 100px;
+  height: 120px;
+ }
+
+ .players {
+  position: relative;
+}
+
+.player {
+  position: relative;
+  margin-top: 350px;
+}
+
+.hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.open-cards {
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 600px;
+  margin-right: 500px;
+  display: flex;
+  gap: 10px;
+}
